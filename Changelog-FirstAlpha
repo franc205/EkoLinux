@@ -1,0 +1,21 @@
+Changelog by ShyanJMC:
+----------------------------------------------------
+26 de abril 2017.
+
+-Hostname cambiado a EkoLinux.
+-Kernel de Arch actualizado.
+-Entradas de /boot/grub/grub.cfg y /boot/syslinux/syslinux.cfg que contenian "Arch" cambiadas a "EkoLinux".
+-Instalados gnome-shell, nautilus, gnome-control-center
+-Iniciados los servicios de gdm en systemd con "systemd-nspawn -D /path /bin/bash"
+-Entrada /arch/boot/syslinux/archiso_head.cfg , archiso_pxe.cfg,  archiso_sys.cfg, con "Arch" a "Eko".
+-En el archivo archiso_pxe.cfg y archiso_sys.cfg cambie el label de ARCH_201704 a EKO_2017
+-Contraseña de root cambiada a: ekolinux
+-El autologin se debe al programa getty, así que lo deshabilite desde systemctl.
+-Para terminar de deshabilitar el autologin para que cargue gdm, edité el archivo
+autologin.conf en /etc/systemd/system/getty@tty1.service.d/
+editando la línea; ExecStart=-/sbin/agetty --autologin root --noclear %I 38400 linux
+borrando el --autologin root.
+-Para cargar gdm tuve que borrar /etc/systemd/system/default.target pero lo backupee
+en /root/default.target-backup
+-Volvi a generar el hash md5 del archivo airootfs.sfs
+----------------------------------------------------------
